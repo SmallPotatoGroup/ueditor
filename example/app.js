@@ -21,9 +21,9 @@ app.set('view engine', 'html');
 app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
     //客户端上传文件设置
     var imgDir = '/img/ueditor/'
-     var ActionType = req.query.action;
+    var ActionType = req.query.action;
     if (ActionType === 'uploadimage' || ActionType === 'uploadfile' || ActionType === 'uploadvideo') {
-        var file_url = imgDir;//默认图片上传地址
+        var file_url = imgDir; //默认图片上传地址
         /*其他上传格式的地址*/
         if (ActionType === 'uploadfile') {
             file_url = '/file/ueditor/'; //附件
@@ -31,7 +31,9 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, re
         if (ActionType === 'uploadvideo') {
             file_url = '/video/ueditor/'; //视频
         }
-        res.ue_up(file_url); //你只要输入要保存的地址 。保存操作交给ueditor来做
+        res.ue_up(file_url, function (result) {
+            console.log('上传的结果', result);
+        }); //你只要输入要保存的地址 。保存操作交给ueditor来做
         res.setHeader('Content-Type', 'text/html');
     }
     //  客户端发起图片列表请求
