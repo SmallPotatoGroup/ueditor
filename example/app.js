@@ -31,9 +31,9 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, re
         if (ActionType === 'uploadvideo') {
             file_url = '/video/ueditor/'; //视频
         }
-        res.ue_up(file_url, function (result) {
-            console.log('上传的结果', result);
-        }); //你只要输入要保存的地址 。保存操作交给ueditor来做
+        // res.ue_up(file_url, function (result) {
+        //     console.log('上传的结果', result);
+        // }); //你只要输入要保存的地址 。保存操作交给ueditor来做
         res.setHeader('Content-Type', 'text/html');
     }
     //  客户端发起图片列表请求
